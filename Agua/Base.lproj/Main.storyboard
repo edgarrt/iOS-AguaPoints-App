@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mh1-Bq-oPe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mh1-Bq-oPe">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WIO-bl-eHJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720" translatesAutoresizingMaskIntoConstraints="NO" id="WIO-bl-eHJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oB1-WG-78s">
@@ -135,7 +135,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-A6-Miv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-A6-Miv">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DxT-Tb-hra">
@@ -289,7 +289,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drinking.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fyL-gJ-whh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drinking" translatesAutoresizingMaskIntoConstraints="NO" id="fyL-gJ-whh">
                                 <rect key="frame" x="19" y="221" width="374" height="326"/>
                             </imageView>
                         </subviews>
@@ -349,7 +349,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home.png" translatesAutoresizingMaskIntoConstraints="NO" id="fTb-ir-ecP">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="fTb-ir-ecP">
                                             <rect key="frame" x="257" y="0.0" width="76" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="76" id="qe7-s2-wr8"/>
@@ -374,7 +374,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Gi-ll-eem">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop" translatesAutoresizingMaskIntoConstraints="NO" id="8Gi-ll-eem">
                                             <rect key="frame" x="258" y="0.0" width="73" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="73" id="KT2-FI-a5H"/>
@@ -399,7 +399,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="sdb-Z8-9dn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="sdb-Z8-9dn">
                                             <rect key="frame" x="260" y="0.0" width="70" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="Nfg-cq-3ri"/>
@@ -424,7 +424,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Drop.png" translatesAutoresizingMaskIntoConstraints="NO" id="zeT-4U-37G">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluedrop" translatesAutoresizingMaskIntoConstraints="NO" id="zeT-4U-37G">
                                             <rect key="frame" x="265" y="0.0" width="51" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="51" id="xWC-Av-xoR"/>
@@ -455,7 +455,7 @@
                                                 <action selector="openWithSafariVC:" destination="Net-uN-lzv" eventType="touchUpInside" id="Ydb-HP-Tm6"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help.png" translatesAutoresizingMaskIntoConstraints="NO" id="U6h-cZ-nhm">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help" translatesAutoresizingMaskIntoConstraints="NO" id="U6h-cZ-nhm">
                                             <rect key="frame" x="251" y="4" width="78" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="78" id="WCl-4K-Boj"/>
@@ -481,7 +481,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings.png" translatesAutoresizingMaskIntoConstraints="NO" id="VcJ-5v-abL">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings" translatesAutoresizingMaskIntoConstraints="NO" id="VcJ-5v-abL">
                                             <rect key="frame" x="254" y="0.0" width="77" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="77" id="FGq-ws-WbL"/>
@@ -939,7 +939,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-5E-2pe">
+                            <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water-90781_960_720" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-5E-2pe">
                                 <rect key="frame" x="-26" y="0.0" width="439" height="736"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mky-s1-qmu">
@@ -1058,7 +1058,7 @@
         <!--Agua Points-->
         <scene sceneID="feK-Dr-yad">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="TNV-DF-pyT" customClass="ViewController" customModule="Agua_Points" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="TNV-DF-pyT" customClass="HomeScreen" customModule="Agua_Points" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h3v-5s-c55"/>
                         <viewControllerLayoutGuide type="bottom" id="n6I-5p-WTk"/>
@@ -1109,7 +1109,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ziN-o6-uCb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptycup" translatesAutoresizingMaskIntoConstraints="NO" id="ziN-o6-uCb">
                                 <rect key="frame" x="82" y="91" width="331" height="470"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lock your phone to begin." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1n-6b-F9U">
@@ -1127,7 +1127,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drops.png" translatesAutoresizingMaskIntoConstraints="NO" id="lA3-p7-CFh">
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solodrops" translatesAutoresizingMaskIntoConstraints="NO" id="lA3-p7-CFh">
                                 <rect key="frame" x="100" y="210" width="304" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="j5s-Lp-Can"/>
@@ -1143,7 +1143,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face-male.png" translatesAutoresizingMaskIntoConstraints="NO" id="qQs-cW-fqA">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="qQs-cW-fqA">
                                 <rect key="frame" x="22" y="91" width="353" height="394"/>
                             </imageView>
                         </subviews>
@@ -1224,7 +1224,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thankyou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pf2-FD-c7f">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thankyou" translatesAutoresizingMaskIntoConstraints="NO" id="Pf2-FD-c7f">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="776"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKs-3N-ggX">
@@ -1269,19 +1269,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1.png" width="441" height="529"/>
         <image name="Drop.png" width="27" height="39"/>
-        <image name="drinking.jpg" width="500" height="349"/>
-        <image name="drops.png" width="441" height="529"/>
-        <image name="face-male.png" width="132" height="132"/>
-        <image name="heart.png" width="200" height="176"/>
-        <image name="help.png" width="200" height="200"/>
-        <image name="home.png" width="200" height="200"/>
-        <image name="settings.png" width="200" height="186"/>
-        <image name="shop.png" width="200" height="199"/>
-        <image name="thankyou.png" width="900" height="602"/>
+        <image name="Image-1" width="132" height="132"/>
+        <image name="bluedrop" width="122" height="178"/>
+        <image name="drinking" width="500" height="349"/>
+        <image name="emptycup" width="441" height="529"/>
+        <image name="heart" width="200" height="176"/>
+        <image name="help" width="200" height="200"/>
+        <image name="home" width="200" height="200"/>
+        <image name="settings" width="200" height="186"/>
+        <image name="shop" width="200" height="199"/>
+        <image name="solodrops" width="441" height="529"/>
+        <image name="thankyou" width="900" height="602"/>
         <image name="water-90781_960_720" width="320" height="233"/>
-        <image name="water-90781_960_720.jpg" width="960" height="699"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dw2-vV-32G"/>

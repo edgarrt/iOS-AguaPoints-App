@@ -40,9 +40,6 @@ class Settings : UIViewController {
     
     @IBAction func logoutAction(sender: AnyObject)
     {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -56,9 +53,6 @@ class Settings : UIViewController {
     
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
 //        print("app is exiting")
@@ -69,9 +63,6 @@ class Settings : UIViewController {
     
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -89,10 +80,6 @@ class Settings : UIViewController {
     
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -120,11 +107,6 @@ class Settings : UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         Menu.target = self.revealViewController()
         Menu.action = #selector(SWRevealViewController.revealToggle(_:))
-        
-        
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         
         currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
             snapshot in

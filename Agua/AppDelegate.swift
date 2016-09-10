@@ -21,13 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AdColonyDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
+        
+        
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
         Firebase.defaultConfig().persistenceEnabled = true
 
         
-        AdColony.configureWithAppID(Constants.adcolonyAppID, zoneIDs: [Constants.adcolonyZoneID, Constants.adcolonyZoneID2], delegate: nil, logging: true)
+        AdColony.configureWithAppID(adcolonyAppID, zoneIDs: [adcolonyZoneID, adcolonyZoneID2], delegate: nil, logging: true)
         
            if !NSUserDefaults.standardUserDefaults().boolForKey("firstAppOpen") {
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstAppOpen")

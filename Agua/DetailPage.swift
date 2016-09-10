@@ -56,22 +56,6 @@ var entries = ""
 @IBAction func redeemButton(sender: AnyObject) {
     if self.totalpoints >= reward!.price {
         
-        /*
-    let refreshAlert = UIAlertController(title: "Are you sure about that", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
-    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-        print("Handle Ok logic here")
-    }))
-    refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-        print("Handle Cancel Logic here")
-        print("\(self.totalpoints)")
-        
-    }))
-    presentViewController(refreshAlert, animated: true, completion: nil)
-    */
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         //Changes the subtitle to the reward alert...
         if (self.key <= 6){
             alertTitle = "To enter in this contest you'll use \(reward!.price) points of your \(self.totalpoints). Do you wish to continue?"
@@ -136,9 +120,6 @@ var entries = ""
     }
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         //    print("app is exiting")
@@ -147,9 +128,6 @@ var entries = ""
     
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -166,11 +144,6 @@ var entries = ""
     }
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
-        
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -292,9 +265,6 @@ var entries = ""
         
 }
     override func viewDidAppear(animated: Bool) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         currentUser.childByAppendingPath("pointsEarned").observeSingleEventOfType(.Value, withBlock: {
             snapshot in

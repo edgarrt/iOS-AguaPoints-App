@@ -24,9 +24,6 @@ class rules: UIViewController {
     
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         //       print("app is exiting")
@@ -37,9 +34,6 @@ class rules: UIViewController {
     
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -55,9 +49,6 @@ class rules: UIViewController {
     
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
@@ -74,17 +65,13 @@ class rules: UIViewController {
     
     
     override func viewDidLoad() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.myObserverMethod(_:)), name: UIApplicationDidEnterBackgroundNotification , object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.myObserverMethod(_:)), name: UIApplicationDidEnterBackgroundNotification , object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.observerMethodActive(_:)), name:UIApplicationDidBecomeActiveNotification, object: nil)
-        
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.exitingObserverMethod(_:)), name: UIApplicationWillTerminateNotification , object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.observerMethodActive(_:)), name:UIApplicationDidBecomeActiveNotification, object: nil)
         
         
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.exitingObserverMethod(_:)), name: UIApplicationWillTerminateNotification , object: nil)
+        
         
         currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
             snapshot in

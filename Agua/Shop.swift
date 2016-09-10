@@ -36,18 +36,12 @@ class Shop: UIViewController {
     var totalpoints = 0
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         //    print("app is exiting")
     }
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -63,10 +57,6 @@ class Shop: UIViewController {
     }
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -111,10 +101,6 @@ class Shop: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
             snapshot in
             let data = snapshot.value as! Int

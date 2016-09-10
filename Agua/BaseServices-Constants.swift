@@ -12,7 +12,29 @@ import UIKit
 
 let BASE_URL = "agua-app.firebaseIO.com"
 
+//Firebase ref
+let userid = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
+
+let adcolonyAppID = "appb0846f5f66e0466794"
+let adcolonyZoneID = "vz998fddbdf3f645638a"
+let adcolonyZoneID2 = "vzc020cb00cde540048d"
+
+
+//Dont need this..Messes things up..
+let zoneOff = "zoneOff"
+let zoneLoading = "ZoneLoading"
+let zoneReady = "ZoneReady"
+
+let currencyBalance = "CurrencyBalance"
+let currencyBalanceChange = "CurrencyBalanceChange"
+
+
 class DataService {
+
+    
+    
     
     static let dataService = DataService()
     

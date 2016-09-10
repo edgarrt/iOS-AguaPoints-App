@@ -46,9 +46,6 @@ class Share: UIViewController {
     
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         //    print("app is exiting")
@@ -57,9 +54,6 @@ class Share: UIViewController {
     
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -76,11 +70,6 @@ class Share: UIViewController {
     }
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
-        
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -95,9 +84,6 @@ class Share: UIViewController {
         if alreadyShared == 0 {
         
             print("Button tapped!")
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
             self.totalpoints = points + 50
             self.new.title = "\(self.totalpoints)"
             currentUser.updateChildValues( ["pointsEarned": self.totalpoints])
@@ -143,11 +129,6 @@ class Share: UIViewController {
         
         
         addObser()
-        
-        
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         
         currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
             snapshot in

@@ -5,11 +5,6 @@
 //  Created by Edgar Trujillo on 3/27/16.
 //  Copyright © 2016 Edgar Trujillo. All rights reserved.
 //
-//  Logos Obtained from 
-//Universal Account Business graphic by <a href="http://www.freepik.com/">Freepik</a> and Droplet graphic by <a href="http://www.icomoon.io">Icomoon</a> from <a href="http://www.flaticon.com/">Flaticon</a> are licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
-
-
-//Calendar graphic by <a href="http://www.freepik.com/">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
 //
 //
 //
@@ -32,19 +27,18 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Instructions
 
-class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDelegate, CoachMarksControllerDelegate, CoachMarksControllerDataSource{
+class HomeScreen: UIViewController, UITextFieldDelegate, GADInterstitialDelegate, CoachMarksControllerDelegate, CoachMarksControllerDataSource{
     
     @IBAction func adButton(sender: AnyObject) {
-// Plays Ads as long as within app hours of 7am - 9pm
+
+        // Plays Ads as long as within app hours of 7am - 9pm
         let hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
         //      print("\(hour)")
         if hour > 6 && hour < 21 {
             
-            AdColony.playVideoAdForZone(Constants.adcolonyZoneID2, withDelegate: nil)
+            AdColony.playVideoAdForZone(adcolonyZoneID2, withDelegate: nil)
             adsWatched += 1
-            //   print("\(adsWatched)")
         
-            //SweetAlert().showAlert("Looks like theres a problem", subTitle: "You've watched all your extra. ", style: AlertStyle.None)
     }
         else {
             afterTime()
@@ -76,7 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
 
     var firebaseref: Firebase!
 
-    var timerCycle = 2700
+    var timerCycle = 2400
     
     var refCycle = 0
     
@@ -263,63 +257,56 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         //Gets current # of Ads watched, creates & sets timer to specific Ad #
         //
         //
-        if self.adsWatched == 1 {
+        switch (self.adsWatched)
+        {
+        case 1:
             timer.invalidate()
-         self.timerCycle = 2400
-         self.originaltimerCycle = 2400
+         self.timerCycle = 2100
+         self.originaltimerCycle = 2100
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
-            
-        }
-        else if self.adsWatched == 2 {
-            timer.invalidate()
-            self.timerCycle = 2100
-            self.originaltimerCycle = 2100
-            
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
-            timerRunning = true
-            
-        }
-        else if self.adsWatched == 3 {
-            
+        
+        case 2:
             timer.invalidate()
             self.timerCycle = 1800
             self.originaltimerCycle = 1800
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
-        }
-        else if self.adsWatched == 4 {
+        case 3:
             
             timer.invalidate()
             self.timerCycle = 1500
             self.originaltimerCycle = 1500
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
-        }
-        else if self.adsWatched == 5 {
+        case 4:
             timer.invalidate()
             self.timerCycle = 1200
             self.originaltimerCycle = 1200
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
+            timerRunning = true
+        case 5:
+            timer.invalidate()
+            self.timerCycle = 900
+            self.originaltimerCycle = 900
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
             
-            
-        }
-        else if self.adsWatched >= 6 {
+        case 6...99:
             SweetAlert().showAlert("Hold on there...", subTitle: "You've used all your accelrated timers for this session already.", style: AlertStyle.None)
             
             timer.invalidate()
-            self.timerCycle = 1200
-            self.originaltimerCycle = 1200
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+            self.timerCycle = 900
+            self.originaltimerCycle = 900
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
             
-        }
-        else {
-            self.timerCycle = 2700
-            self.originaltimerCycle = 2700
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+        default:
+            self.timerCycle = 2400
+            self.originaltimerCycle = 2400
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
             timerRunning = true
         }
 }
@@ -328,12 +315,6 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
     func setUp(){
         //gets current points earned
         //
-        
-        //Firebase ref
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         currentUser.childByAppendingPath("pointsEarned").observeSingleEventOfType(.Value, withBlock: {
             snapshot in
             let data = snapshot.value as! Int
@@ -362,13 +343,6 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         
        //displays time until next point
         timerDisplay.text = "\(minutes) minutes \(seconds) secs"
-       
-        //Firebase ref
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
-        
             
         //completed cycle
         //
@@ -383,23 +357,25 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         
         //resets timer with consideration of # of ADs watched 
         //
-            if adsWatched == 1 {
-                timerCycle = 2400
-            }
-            else if adsWatched == 2 {
+            switch (adsWatched){
+                
+            case 1:
                 timerCycle = 2100
-            }
-            else if adsWatched == 3 {
+        
+            case 2:
                 timerCycle = 1800
-            }
-            else if adsWatched == 4 {
+            
+            case 3:
                 timerCycle = 1500
-            }
-            else if adsWatched >= 5 {
+            
+            case 4:
                 timerCycle = 1200
-            }
-            else {
-                timerCycle = 2700
+            
+            case 5...99:
+                timerCycle = 900
+            
+            default:
+                timerCycle = 2400
             }
         }
         
@@ -420,11 +396,10 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
 
    // Creates timer when app back is active
     func createTimer(){
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.counting), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(HomeScreen.counting), userInfo: nil, repeats: true)
         timerRunning = true
-        
-        
     }
+    
     
     //Called when app is becoming active again 
     //calcs time off phone, adds pts if cycles completed
@@ -432,6 +407,7 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
   
         //checks if still within hours
         let hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
+        
         if hour > 6 && hour < 21 {
             withinHours = true
         }
@@ -440,112 +416,241 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         }
         
         
-        
         if withinHours == true {
             
         //resets screen locked bool to false
         NSUserDefaults.standardUserDefaults().setValue( false , forKey:"kDisplayStatusLocked")
         
-        // firebase ref
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
         //timeStamp checks if app is reloaded from icon or screen on
-        if timeStamp == 0 {
-           // print("app reloaded from home")
-            currentUser.updateChildValues( ["online": "yes"])
-            let timeDiff = Int( CFAbsoluteTimeGetCurrent() - backgroundTimeStamp)
-            let minutes = timeDiff / 60
-           // if off app for more than 10 minutes, app starts over
-            if minutes > 10 {
-                self.timerCycle = 2700
-                self.adsWatched = 0
-                createTimer()
-           //could do without this ani code ????
-                waterImage.image = UIImage(named: "drops.png")
-                let xPos =  waterImage.frame.origin.x
-                let yPos =  waterImage.frame.origin.y
-                let options = UIViewAnimationOptions.Repeat
-                UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
+        
+            if timeStamp == 0 {
+           
+                // app reloaded from home/call/text
+                currentUser.updateChildValues( ["online": "yes"])
+            
+                let timeDiff = Int( CFAbsoluteTimeGetCurrent() - backgroundTimeStamp)
+            
+                let minutes = timeDiff / 60
+            
+           
+                // if off app for more than 10 minutes, app starts over
+            
+                if minutes > 10 {
+                
+                    self.timerCycle = 2700
+                
+                    self.adsWatched = 0
+                
+                    createTimer()
+           
+        
+                    /*
+            
+                     //could do without this ani code ????
+                
+                     waterImage.image = UIImage(named: "solodrops")
+                
+                     let xPos =  waterImage.frame.origin.x
+                
+                     let yPos =  waterImage.frame.origin.y
+                
+                     let options = UIViewAnimationOptions.Repeat
+                
+                     UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
                     self.waterImage.frame = CGRect(x:  xPos, y: yPos + 80 , width: 286, height: 341)
                     }, completion: nil)
-            }
-            else {
-            createTimer()
-            }
-            waterImage.image = UIImage(named: "drops.png")
-            let xPos =  waterImage.frame.origin.x
-            let yPos =  waterImage.frame.origin.y
-            let options = UIViewAnimationOptions.Repeat
-            UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
+        
+                     */
+            
+                }
+            
+                else {
+            
+                    // Was off App for less than 10 minutes
+                
+                    createTimer()
+            
+                }
+            
+                waterImage.image = UIImage(named: "solodrops")
+            
+                let xPos =  waterImage.frame.origin.x
+            
+                let yPos =  waterImage.frame.origin.y
+            
+                let options = UIViewAnimationOptions.Repeat
+            
+                UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
                 self.waterImage.frame = CGRect(x:  xPos, y: yPos + 80 , width: 286, height: 341)
                 }, completion: nil)
-}
-        else {
-            //app reloaded from lock screen 
-            //earning points 
-            //calcs time of phone & time needed for next cycle
-            if stayed == true {
-            currentUser.updateChildValues( ["online": "yes"])
-            let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
-            let mins = elapsedTime / 60
-            let seconds = elapsedTime - ( mins * 60)
-            let firstCycle = Int ( elapsedTime / refCycle)
-         //   print("\(elapsedTime)")
-         //   print("\(timerCycle)")
-         //   print("\(cyclesCompleted)")
-            if firstCycle >= 1 {
-                //meaning cycles were completed
-                //also at least one was completed
-                let extraTime = elapsedTime - refCycle
-                let extraCycles = Int ( extraTime / self.originaltimerCycle)
-                if extraCycles >= 1 {
-                    // means more cycles were completed 
-                    totalpoints += 1
-                    totalpoints += extraCycles
-                    let remainingTime = extraTime % self.originaltimerCycle
-                    self.timerCycle = self.originaltimerCycle
-                    self.timerCycle = self.timerCycle - remainingTime
-                    pointsDisplay.text = "\(totalpoints)"
-                    pts.title = "\(totalpoints)"
+
+            }
+        
+            else {
+            
+                //app reloaded from lock screen
+            
+                //earning points
+            
+                //calcs time of phone & time needed for next cycle
+            
+                if stayed == true {
+            
+           
+                    currentUser.updateChildValues( ["online": "yes"])
+            
+                    let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
+            
+                    let mins = elapsedTime / 60
+            
+                    let seconds = elapsedTime - ( mins * 60)
+            
+                    let firstCycle = Int ( elapsedTime / refCycle)
+         
+          
+                    //Debug...
+        
+                    //   print("\(elapsedTime)")
+         
+          
+                    //   print("\(timerCycle)")
+         
+            
+                    //   print("\(cyclesCompleted)")
+        
+          
+                    if firstCycle >= 1 {
                     
-                    currentUser.updateChildValues( ["pointsEarned": totalpoints])
-                    createTimer()
-                    SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) and \(seconds) seconds and earned \(extraCycles + 1) points.", style: AlertStyle.None)
-                }
-                else {
-                    //means only one cycle was completed
-                    timerCycle = self.originaltimerCycle
-                    timerCycle = timerCycle - extraTime
-                    totalpoints += 1
-                    pointsDisplay.text = "\(totalpoints)"
-                    pts.title = "\(totalpoints)"
+            
+                        //meaning cycles were completed
+             
+                        //also at least one was completed
+                
+                
+                        let extraTime = elapsedTime - refCycle
+                
+              
+                        let extraCycles = Int ( extraTime / self.originaltimerCycle)
+                
+                        
                     
-                    currentUser.updateChildValues( ["pointsEarned": totalpoints])
-                    createTimer()
-                    SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) and \(seconds) seconds and earned 1 point.", style: AlertStyle.None)
+                        if extraCycles >= 1 {
+                    
+                     
+                            // means more cycles were completed
+                   
+                            
+                       
+                            totalpoints += 1
+                    
+                   
+                            totalpoints += extraCycles
+                    
+                   
+                            let remainingTime = extraTime % self.originaltimerCycle
+                    
+                   
+                            self.timerCycle = self.originaltimerCycle
+                    
+                   
+                            self.timerCycle = self.timerCycle - remainingTime
+                    
+                   
+                            pointsDisplay.text = "\(totalpoints)"
+                    
+                   
+                            pts.title = "\(totalpoints)"
+                    
+                   
+                            currentUser.updateChildValues( ["pointsEarned": totalpoints])
+                    
+                    
+                            createTimer()
+                    
+                   
+                            SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) and \(seconds) seconds and earned \(extraCycles + 1) points.", style: AlertStyle.None)
+                
+                        }
+               
+                    
+                        else {
+                
+                            
+                        
+                        
+                            //means only one cycle was completed
+                    
+                   
+                            timerCycle = self.originaltimerCycle
+                    
+                       
+                            timerCycle = timerCycle - extraTime
+                    
+                       
+                            totalpoints += 1
+                    
+                       
+                            pointsDisplay.text = "\(totalpoints)"
+                    
+                      
+                            pts.title = "\(totalpoints)"
+                    
+                    
+                      
+                            currentUser.updateChildValues( ["pointsEarned": totalpoints])
+                   
+                       
+                            createTimer()
+                   
+                       
+                            SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) and \(seconds) seconds and earned 1 point.", style: AlertStyle.None)
+                       
+                        }
+                    
                     }
-        }
-            else{
-                //meaning no cycles were completed
-                SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) minutes and \(seconds) seconds.", style: AlertStyle.None)
-                timerCycle = timerCycle - elapsedTime
-                createTimer()
-            }
-        }
-            if stayed == false{
-                SweetAlert().showAlert("Ohh nooo.", subTitle: "We detected that you used your phone while earning points. Next time open from the alert or just slide to unlock to claim your points before using your phone.", style: AlertStyle.None)
-                createTimer()
-            }
+                    
+                    
+            
+                    else{
+                
+                        //meaning no cycles were completed
+                
+                        SweetAlert().showAlert("Congratulations!", subTitle: "You were off your phone for \(mins) minutes and \(seconds) seconds.", style: AlertStyle.None)
+              
+                        timerCycle = timerCycle - elapsedTime
+               
+                        createTimer()
+          
+                    }
+        
+            
+    
+                }
+         
+            
+            
+                if stayed == false{
+                
+                    SweetAlert().showAlert("Ohh nooo.", subTitle: "We detected that you used your phone while earning points. Next time open from the alert or just slide to unlock to claim your points before using your phone.", style: AlertStyle.None)
+              
+                    createTimer()
+            
+                }
+            
             }
             
-}
-       //if app not within hours displays alert
-        else if withinHours == false{
-         afterTime()
+
         }
-}
+       
+            //if app not within hours displays alert
+        
+        else if withinHours == false{
+        
+            afterTime()
+        
+        }
+
+    }
 
     //not used anymore.....
     func myObserverMethod(notification : NSNotification) {
@@ -556,12 +661,8 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         // called when app is suspeneded/terminated within the app 
         //ends session by reseting everything 
         
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
             currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
             currentUser.updateChildValues( ["online": "no"])
-       //     print("app is exiting")
     }
     
     
@@ -570,22 +671,22 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
     func pauseObserverMethod(notification : NSNotification){
         
         if NSUserDefaults.standardUserDefaults().valueForKey("kDisplayStatusLocked") as! Bool == true {
-       //earning points 
-            
+       
+            //earning points
             //print("screen locked")
             pauseTimer()
             self.timeStamp = CFAbsoluteTimeGetCurrent()
             self.refCycle = timerCycle
-       //     print("\(self.refCycle)")
+      
+            //     print("\(self.refCycle)")
             self.stayed = true
             notify()
         }
         else{
+        
             // app went to background by home button, call, or text
             //not earning points, pauses timer cycle
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
+            
             currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
             currentUser.updateChildValues( ["online": "no"])
        //     print("app went to home screen")
@@ -639,17 +740,17 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
         
         
         //Observers for app states
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.observerMethodActive(_:)), name:UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.observerMethodActive(_:)), name:UIApplicationDidBecomeActiveNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.exitingObserverMethod(_:)), name: UIApplicationWillTerminateNotification , object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.exitingObserverMethod(_:)), name: UIApplicationWillTerminateNotification , object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.pauseObserverMethod(_:)), name: UIApplicationWillResignActiveNotification , object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.pauseObserverMethod(_:)), name: UIApplicationWillResignActiveNotification , object: nil)
         
         //Observer for screen lock
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), nil, LockNotifierCallback.notifierProc(), "com.apple.springboard.lockcomplete", nil, CFNotificationSuspensionBehavior.DeliverImmediately)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.local) , name: "Local", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeScreen.local) , name: "Local", object: nil)
     }
     
         
@@ -657,118 +758,196 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
-  //      print("view appeared")
+   
         NSUserDefaults.standardUserDefaults().setValue( false , forKey:"kDisplayStatusLocked")
         
-  // if first open, sends user to Thank-you page else continues like normal
+  
+        // if first open, sends user to Thank-you page else continues like normal
+        
         if NSUserDefaults.standardUserDefaults().boolForKey("firstAppOpen") == false {
             // First App Open
+        
             coach.hidden = false
+            
             self.coachMarksController?.startOn(self)
             
-       //   self.performSegueWithIdentifier("firstOpen", sender: self)
+       
+            //   self.performSegueWithIdentifier("firstOpen", sender: self)
+        
         }
+        
         else{
 
-            removeCoachFace()
-        
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
-  //checks if within app hours
-        let hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
-  //      print("\(hour)")
-        if hour > 6 && hour < 21 {
-            self.withinHours = true
-            self.stayed = false
             
-            titleDisplay.text = "Lock your Phone to begin."
-            currentUser.updateChildValues([
+            
+            removeCoachFace()
+    
+ 
+            //checks if within app hours
+        
+            let hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: NSDate())
+  
+            //      print("\(hour)")
+        
+            if hour > 6 && hour < 21 {
+            
+                self.withinHours = true
+            
+                self.stayed = false
+           
+                
+            
+                titleDisplay.text = "Lock your Phone to begin."
+            
+                currentUser.updateChildValues([
                 "online" : "yes" ])
             
-            timerRunning = true
-            if timerRunning == true {
                 
-                setUp()
+            
+                timerRunning = true
+            
+                if timerRunning == true {
                 
-                aniRunning = true
-                let modelName = UIDevice.currentDevice().modelName
-                if modelName > 12 {
-                    aniRunning = false
-                    waterImage.image = UIImage(named: "drops.png")
-                    let imageName = "drops.png"
-                    let image = UIImage(named: imageName)
-                    let imageView = UIImageView(image: image!)
-                    imageView.frame = CGRect(x: 80, y: 60, width: 286, height: 341)
-                    view.addSubview(imageView)
-                    waterImage.image = nil
+                
+                    setUp()
+                
+               
+                    aniRunning = true
+                
+                    let modelName = UIDevice.currentDevice().modelName
+                
+                    if modelName > 12 {
                     
-                }
-                
-                currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
-                    snapshot in
-                    let data = snapshot.value as! Int
+                        aniRunning = false
                     
-                    if data != 0 {
-                        self.adsWatched = data
-            //            print("\(self.adsWatched)")
-                        self.counting()
-                        self.adswatched()
+                        waterImage.image = UIImage(named: "solodrops")
+                    
+                        let imageName = "solodrops"
+                    
+                        let image = UIImage(named: imageName)
+                    
+                        let imageView = UIImageView(image: image!)
+                    
+                        imageView.frame = CGRect(x: 80, y: 60, width: 286, height: 341)
+                    
+                        view.addSubview(imageView)
+                    
+                        waterImage.image = nil
+                    
+                
                     }
-                    else{
-                        self.adsWatched = 0
-                        self.counting()
-                        self.adswatched()
-                    }
-                })
                 
-            //creates animation. Should still fix for ipad, if plan to add later..
-                if aniRunning == true {
-                waterImage.image = UIImage(named: "drops.png")
-                let xPos =  waterImage.frame.origin.x
-                let yPos =  waterImage.frame.origin.y
                 
-                let options = UIViewAnimationOptions.Repeat
-                UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
+                    currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
                     
-                    self.waterImage.frame = CGRect(x:  xPos, y: yPos + 80 , width: 286, height: 341)
-                    }, completion: nil)
+                        snapshot in
+                    
+                        let data = snapshot.value as! Int
+                    
+                    
+                        if data != 0 {
+                        
+                            self.adsWatched = data
+          
+                            //  print("\(self.adsWatched)")
+                        
+                            self.counting()
+                        
+                            self.adswatched()
+                    
+                        }
+                    
+                        else{
+                        
+                            self.adsWatched = 0
+                        
+                            self.counting()
+                        
+                            self.adswatched()
+                    
+                        }
+                
+                    })
+                
+            
+                    //creates animation. Should still fix for ipad, if plan to add later..
+                
+                    if aniRunning == true {
+                
+                        waterImage.image = UIImage(named: "solodrops")
+                
+                        let xPos =  waterImage.frame.origin.x
+                
+                        let yPos =  waterImage.frame.origin.y
+                
+              
+                        let options = UIViewAnimationOptions.Repeat
+               
+                        UIView.animateWithDuration(1.5, delay:0.0, options: options ,animations: {
+                    
+                   
+                            self.waterImage.frame = CGRect(x:  xPos, y: yPos + 80 , width: 286, height: 341)
+                    
+                            }, completion: nil)
+               
+                    }
+           
                 }
+      
             }
-        }
          
-        else{
-            //App is not within hours, displays alert, displays users pts.
-            //
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-            currentUser.updateChildValues( ["online": "no"])
-            afterTime()
-            self.titleDisplay.text = "Sorry, Come Back Soon..."
-            waterImage.image = nil
+        
+            else{
             
-            self.withinHours = false
+                //App is not within hours, displays alert, displays users pts.
             
-            currentUser.childByAppendingPath("pointsEarned").observeSingleEventOfType(.Value, withBlock: {
-                snapshot in
-                let data = snapshot.value as! Int
-                if data > 0 {
-                    self.totalpoints = data
-                    self.pointsDisplay.text = "\(self.totalpoints)"
-                    self.pts.title = "\(self.totalpoints)"
-                }
-                else {
-                    self.totalpoints = 0
-                    self.pointsDisplay.text = "0"
-                    self.pts.title = "0"
-                }
+                //
+            
+                currentUser.updateChildValues( ["online": "no"])
+            
+                afterTime()
+            
+                self.titleDisplay.text = "Sorry, Come Back Soon..."
+            
+                waterImage.image = nil
+            
+           
+                self.withinHours = false
+            
+           
+                currentUser.childByAppendingPath("pointsEarned").observeSingleEventOfType(.Value, withBlock: {
+                
+                    snapshot in
+                
+                    let data = snapshot.value as! Int
+                
+                    if data > 0 {
+                    
+                        self.totalpoints = data
+                    
+                        self.pointsDisplay.text = "\(self.totalpoints)"
+                    
+                        self.pts.title = "\(self.totalpoints)"
+                
+                    }
+                
+                    else {
+                    
+                        self.totalpoints = 0
+                    
+                        self.pointsDisplay.text = "0"
+                    
+                        self.pts.title = "0"
+                
+                    }
+                
                 })
+        
+            }
+
         }
-}
-}
+
+    }
 
     override func viewWillAppear(animated: Bool) {
         }
@@ -779,9 +958,6 @@ class ViewController: UIViewController, UITextFieldDelegate, GADInterstitialDele
    //     print("View will disapper")
         inAppAds = adsWatched
    //     print("\(inAppAds)")
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["CurrentAdsSeen": inAppAds ])
         timer.invalidate()
     }

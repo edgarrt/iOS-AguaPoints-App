@@ -41,9 +41,6 @@ class MorePoints: UIViewController, AdColonyAdDelegate
     var ads = 0
     
     func exitingObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         //    print("app is exiting")
@@ -52,9 +49,6 @@ class MorePoints: UIViewController, AdColonyAdDelegate
     
     
     func observerMethodActive ( notification : NSNotification){
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         currentUser.updateChildValues( ["online": "yes"])
         
         let elapsedTime = Int (CFAbsoluteTimeGetCurrent() - timeStamp )
@@ -71,11 +65,6 @@ class MorePoints: UIViewController, AdColonyAdDelegate
     }
     
     func myObserverMethod(notification : NSNotification) {
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
-        
-        
         currentUser.updateChildValues( ["online": "no"])
         currentUser.updateChildValues( ["CurrentAdsSeen": 0 ])
         
@@ -122,10 +111,6 @@ class MorePoints: UIViewController, AdColonyAdDelegate
             self.statusLabel.hidden = false
             self.statusLabel.text = "Sorry, but you've maxed out your daily bonus points, come back tomorrow to get more!"
         }
-        
-        let BASE_URL = "agua-app.firebaseIO.com"
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
         
         currentUser.childByAppendingPath("CurrentAdsSeen").observeSingleEventOfType(.Value, withBlock: {
             snapshot in
@@ -260,7 +245,7 @@ class MorePoints: UIViewController, AdColonyAdDelegate
     func updateCurrencyBalance()
     {
         //Get currency balance from persistent storage and display it
-        if let wrappedBalance = NSUserDefaults.standardUserDefaults().objectForKey(Constants.currencyBalance) as! NSNumber? {
+        if let wrappedBalance = NSUserDefaults.standardUserDefaults().objectForKey(currencyBalance) as! NSNumber? {
             self.currencyLabel.text = wrappedBalance.stringValue
         } else {
             self.currencyLabel.text = "0"
@@ -280,11 +265,8 @@ class MorePoints: UIViewController, AdColonyAdDelegate
             
             self.totalPoints += 1
             
-            AdColony.playVideoAdForZone(Constants.adcolonyZoneID, withDelegate: self, withV4VCPrePopup: false, andV4VCPostPopup: false)
+            AdColony.playVideoAdForZone(adcolonyZoneID, withDelegate: self, withV4VCPrePopup: false, andV4VCPostPopup: false)
             
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
             currentUser.updateChildValues(["extraPoints" : extraPoints])
             currentUser.updateChildValues(["timeStamp" : 0])
             currentUser.updateChildValues(["pointsEarned" : self.totalPoints])
@@ -295,15 +277,11 @@ class MorePoints: UIViewController, AdColonyAdDelegate
         }
         else if self.extraPoints == 4 {
             
-            AdColony.playVideoAdForZone(Constants.adcolonyZoneID, withDelegate: self, withV4VCPrePopup: false, andV4VCPostPopup: false)
+            AdColony.playVideoAdForZone(adcolonyZoneID, withDelegate: self, withV4VCPrePopup: false, andV4VCPostPopup: false)
             
             extraPoints += 1
             
             self.totalPoints += 1
-            
-            let BASE_URL = "agua-app.firebaseIO.com"
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(BASE_URL)").childByAppendingPath("users").childByAppendingPath(userID)
             currentUser.updateChildValues(["extraPoints" : extraPoints])
             currentUser.updateChildValues(["timeStamp" : round(self.Timestamp)])
             currentUser.updateChildValues(["pointsEarned" : self.totalPoints])
